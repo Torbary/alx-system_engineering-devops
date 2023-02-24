@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#displays "Best School" 10 times but the 9th iter, print "Best Schhol""Hi"
+
+counter=1
+
+while [ $counter -lt 10 ]
+do
+	if [ $counter -eq 9 ]
+	then
+		echo "Best School"
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+
+	counter=$((counter+1))
+done
