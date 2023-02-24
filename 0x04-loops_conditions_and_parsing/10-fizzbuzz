@@ -6,7 +6,7 @@ for ((n=1;n<=100;n++))
 do
 	if ((n % 15 == 0))
 	then
-		echo "Fizzbuzz"
+		echo "FizzBuzz"
 	elif ((n % 3 == 0))
 	then
 		echo "Fizz"
