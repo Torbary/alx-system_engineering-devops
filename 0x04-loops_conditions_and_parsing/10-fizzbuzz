@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 #Display Fizbuzz when the number is a multiple of 3 and 5 fizz for 3,Buzz
 #5
 
