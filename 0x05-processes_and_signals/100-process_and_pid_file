@@ -12,7 +12,7 @@ terminator() {
 	exit
 }
 
-echo "$$" > /var/run/myscript.pid/
+echo "$$" > /var/run/myscript.pid
 
 while true; do
 	echo "To infinity and beyond"
