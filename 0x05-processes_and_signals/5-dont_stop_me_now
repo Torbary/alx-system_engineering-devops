@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#stops "To infinity and beyond" without the use of ctrl+c
+
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
