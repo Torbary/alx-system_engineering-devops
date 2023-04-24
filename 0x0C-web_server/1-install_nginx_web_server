@@ -5,6 +5,9 @@
 apt-get update
 apt-get install -y nginx
 
+#listen on port 80
+ufw allow 'Nginx HTTP'
+
 # Configure nginx to listen on port 80 and serve "Hello World!" on its root
 echo "Hello World!" > /var/www/html/index.html
 
