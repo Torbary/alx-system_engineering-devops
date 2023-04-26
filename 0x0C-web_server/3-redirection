@@ -7,15 +7,23 @@ apt-get install -y nginx
 
 mkdir /etc/nginx/html
 touch /etc/nginx/html/index.html
-echo "Hello Word!" > /etc/nginx/html/index.html
-printf %s "server {
+echo "Hello World!" > /etc/nginx/html/index.html
+
+sed -i 's/server_name _;/server_name 34.207.211.110;/' /etc/nginx/sites-available/default
+
+printf %s "
+server {
     listen 80;
     listen [::]:80 default_server;
     root   /etc/nginx/html;
     index  index.html index.htm;
+
     location /redirect_me {
-        return 301 https://www.goggle.com;
+        return 301 https://www.google.com;
     }
-}" > /etc/nginx/sites-available/default
+}
+" > /etc/nginx/sites-available/default
+
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 service nginx restart
