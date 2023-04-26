@@ -25,6 +25,6 @@ server {
 }
 " > /etc/nginx/sites-available/default
 
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/xyz /etc/nginx/sites-enabled/xyz
 
-service nginx restart
+sudo service nginx restart
