@@ -1,29 +1,40 @@
 #!/usr/bin/env bash
-#Install and configure HAproxy on your lb-01 server.
+#Installs and configures HAproxy in a load balancer server
 
-# Update the package list and Install HAproxy
-sudo apt-get update
-sudo apt-get install -y haproxy
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.8
+apt-get update
+apt-get install -y haproxy=2.4.22\*
 
-# Configure HAproxy
-sudo sed -i "s/.*ENABLED=.*/ENABLED=1/" /etc/default/haproxy
-sudo touch /etc/haproxy/haproxy.cfg
-sudo chmod 666 /etc/haproxy/haproxy.cfg
-sudo cat > /etc/haproxy/haproxy.cfg <<EOF
+echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
 
-frontend load_balancer
-    bind 172792-lb-01:80
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+listen hbnb
+    bind 0.0.0.0:80
     mode http
-    default_backend web_servers
-
-
-backend web_servers
-    mode http
+    stats enable
+    stats uri /haproxy?stats
     balance roundrobin
-    server web-01 172792-web-01:80 check
-    server web_02 172792-web-02:80 check
-EOF
+    option httpclose
+    option forwardfor
+    server 172792-web-01 34.207.211.110:80 check
+    server 172792-web-02 35.175.132.106:80 check
+" >> /etc/haproxy/haproxy.cfg
 
-#MAke sure HAproxy can be managed via an init script
-sudo systemctl enable haproxy
-sudo systemctl restart haproxy
+service haproxy start
