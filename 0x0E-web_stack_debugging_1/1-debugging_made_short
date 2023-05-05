@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # write the same bash script in task 0 but in a shorter way <= 5lines
-service nginx status | grep -q "not running" || service nginx restart
-grep -q "listen\s\+80" /etc/nginx/sites-enabled/* || sed -i '/server {/a \    listen 80;' /etc/nginx/sites-enabled/default
-service nginx restart
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"
