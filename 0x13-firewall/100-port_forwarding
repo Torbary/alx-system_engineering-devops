@@ -1,0 +1,8 @@
+# START OPENSSH PORT FORWARDING
+# NAT table rules
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+# END OPENSSH PORT FORWARDING
+sudo ufw reload
