@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#same script as task1, but in a shorter way
+
+sed -i 's/user\s*nginx;/user nginx;\n\tlisten 0.0.0.0:8080;/g' /etc/nginx/nginx.conf
+service nginx restart
