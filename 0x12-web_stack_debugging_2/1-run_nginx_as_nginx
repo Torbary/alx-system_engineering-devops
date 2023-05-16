@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#listen to port 8080
 
 #stop Nginx service
 service nginx stop
@@ -11,4 +12,3 @@ sed -i 's/listen\s*[^;]*;/listen 8080 default_server;/' /etc/nginx/sites-enabled
 
 # Start Nginx service
 service nginx start
-
