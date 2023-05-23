@@ -23,7 +23,8 @@ def export_all_employees_todo_json():
             employee_id = user['id']
             employee_username = user['username']
 
-            todo_url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
+            todo_url = "https://jsonplaceholder.typicode.com/todos?" \
+                "userId={}".format(employee_id)
             todo_response = requests.get(todo_url)
             if todo_response.status_code == 200:
                 todo_data = todo_response.json()
