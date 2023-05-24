@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """gather data from an API"""
 
-import requests
+
 from sys import argv
+import requests
+
 
 if __name__ == '__main__':
     if len(argv) > 1:
