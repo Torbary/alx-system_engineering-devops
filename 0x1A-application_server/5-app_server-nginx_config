@@ -21,7 +21,7 @@ server {
     root   /data/web_static/current;
     index  index.html index.htm 8-index.html;
 
-    add_header X-Served-By 496-web-01;
+    add_header X-Served-By 172792-web-01;
 
     location / {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
